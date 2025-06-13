@@ -1,13 +1,12 @@
 package com.ejemplo.alojamiento.controller;
 
 import com.ejemplo.alojamiento.model.Cliente;
+import com.ejemplo.alojamiento.Repository.ClienteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,19 +14,23 @@ import java.util.Optional;
 @RequestMapping("/clientes")
 public class ClienteController {
     private static final Logger logger = LoggerFactory.getLogger(ClienteController.class);
-    private final List<Cliente> clientes = new ArrayList<>();
+
+    private final ClienteRepository clienteRepository;
+
+    public ClienteController(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
 
     @GetMapping
     public ResponseEntity<List<Cliente>> getAll() {
+        List<Cliente> clientes = clienteRepository.findAll();
         logger.info("Cargando todos los clientes");
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> getById(@PathVariable Long id) {
-        Optional<Cliente> cliente = clientes.stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst();
+        Optional<Cliente> cliente = clienteRepository.findById(id);
         if (cliente.isPresent()) {
             logger.info("Cliente encontrado: {}", cliente.get());
             return new ResponseEntity<>(cliente.get(), HttpStatus.OK);
@@ -38,54 +41,64 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> create(@RequestBody Cliente nuevo) {
-        if (nuevo.getId() == null || nuevo.getNombre() == null || nuevo.getGmail() == null || nuevo.getTelefono() == null) {
-            logger.error("los datos estan incompletos para la creacion de un cliente: {}", nuevo);
-            return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> create(@RequestBody Cliente nuevo) {
+        if (nuevo.getNombre() == null || nuevo.getGmail() == null || nuevo.getTelefono() == null) {
+            logger.error("Datos incompletos para crear cliente: {}", nuevo);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        clientes.add(nuevo);
-        logger.info("Cliente añadido: {}", nuevo);
-        return new ResponseEntity<>(nuevo, HttpStatus.CREATED);
+
+        boolean existe = clienteRepository.existsByGmail(nuevo.getGmail());
+        if (existe) {
+            logger.warn("Cliente con correo {} ya existe", nuevo.getGmail());
+            return new ResponseEntity<>("Cliente ya registrado con ese correo", HttpStatus.CONFLICT);
+        }
+
+        Cliente saved = clienteRepository.save(nuevo);
+        logger.info("Cliente guardado en base: {}", saved);
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> update(@PathVariable Long id, @RequestBody Cliente actualizado) {
-        for (Cliente c : clientes) {
-            if (c.getId().equals(id)) {
-                c.setNombre(actualizado.getNombre());
-                c.setGmail(actualizado.getGmail());
-                c.setTelefono(actualizado.getTelefono());
-                logger.info("Cliente actualizado: {}", c);
-                return new ResponseEntity<>(c, HttpStatus.OK);
-            }
+        Optional<Cliente> optional = clienteRepository.findById(id);
+        if (optional.isPresent()) {
+            Cliente cliente = optional.get();
+            cliente.setNombre(actualizado.getNombre());
+            cliente.setGmail(actualizado.getGmail());
+            cliente.setTelefono(actualizado.getTelefono());
+            Cliente saved = clienteRepository.save(cliente);
+            logger.info("Cliente actualizado: {}", saved);
+            return new ResponseEntity<>(saved, HttpStatus.OK);
         }
-        logger.warn("No se encontró el cliente con ID {} para actualizar", id);
+        logger.warn("Cliente no encontrado con ID {}", id);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
     @PatchMapping("/{id}")
     public ResponseEntity<Cliente> patch(@PathVariable Long id, @RequestBody Cliente datos) {
-        for (Cliente c : clientes) {
-            if (c.getId().equals(id)) {
-                if (datos.getNombre() != null) c.setNombre(datos.getNombre());
-                if (datos.getGmail() != null) c.setGmail(datos.getGmail());
-                if (datos.getTelefono() != null) c.setTelefono(datos.getTelefono());
-                logger.info("Cliente modificado parcialmente: {}", c);
-                return new ResponseEntity<>(c, HttpStatus.OK);
-            }
+        Optional<Cliente> optional = clienteRepository.findById(id);
+        if (optional.isPresent()) {
+            Cliente cliente = optional.get();
+            if (datos.getNombre() != null) cliente.setNombre(datos.getNombre());
+            if (datos.getGmail() != null) cliente.setGmail(datos.getGmail());
+            if (datos.getTelefono() != null) cliente.setTelefono(datos.getTelefono());
+            Cliente saved = clienteRepository.save(cliente);
+            logger.info("Cliente modificado parcialmente: {}", saved);
+            return new ResponseEntity<>(saved, HttpStatus.OK);
         }
-        logger.warn("No se encontró el cliente con ID {} para modificación parcial", id);
+        logger.warn("Cliente no encontrado con ID {} para patch", id);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
-        boolean eliminado = clientes.removeIf(c -> c.getId().equals(id));
-        if (eliminado) {
-            logger.info("Cliente con ID {} eliminado", id);
+        if (clienteRepository.existsById(id)) {
+            clienteRepository.deleteById(id);
+            logger.info("Cliente eliminado con ID {}", id);
             return new ResponseEntity<>("Cliente eliminado", HttpStatus.OK);
-        } else {
-            logger.warn("No se encontró el cliente con ID {} para eliminar", id);
-            return new ResponseEntity<>("No se encontró el cliente", HttpStatus.NOT_FOUND);
         }
+        logger.warn("Cliente no encontrado con ID {} para eliminar", id);
+        return new ResponseEntity<>("No se encontró el cliente", HttpStatus.NOT_FOUND);
     }
 }
+

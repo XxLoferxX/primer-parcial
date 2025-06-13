@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long id;
     private String nombre;
     private String gmail;
