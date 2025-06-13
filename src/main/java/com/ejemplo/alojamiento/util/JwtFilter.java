@@ -29,8 +29,14 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
-        // Rutas públicas que no necesitan validar token
-        if (path.startsWith("/auth/logout") || path.startsWith("/auth/login") || path.startsWith("/auth/register")) {
+        // Rutas públicas o que no requieren autenticación
+        if (path.startsWith("/auth/login")
+                || path.startsWith("/auth/register")
+                || path.startsWith("/auth/logout")
+                || path.startsWith("/swagger")
+                || path.startsWith("/v3/api-docs")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/favicon.ico")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -40,9 +46,7 @@ public class JwtFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
 
-            // Verificar si el token está en la blacklist
             if (tokenBlacklist.contains(token)) {
-                // Token invalidado, respondemos con 401 Unauthorized
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.getWriter().write("Token inválido o sesión cerrada");
                 return;
@@ -54,13 +58,11 @@ public class JwtFilter extends OncePerRequestFilter {
                         new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } else {
-                // Token expirado
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.getWriter().write("Token expirado");
                 return;
             }
         } else {
-            // No hay token, podrías devolver error o dejar pasar según configuración
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Token no proporcionado");
             return;

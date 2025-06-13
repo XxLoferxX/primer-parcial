@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4acde3b8-998a-4567-b5a2-f1369a36adb4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/Repository/PersonaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/model/mensage.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../rar4/SpringBoot-develop/src/main/java/test/sis414/demo/Repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.12/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.12/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.12/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.12/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12/fileHashes/fileHashes.bin" afterDir="false" />
@@ -16,26 +13,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.12/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/controller/ClienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/controller/ClienteController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/controller/HabitacionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/controller/HabitacionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/controller/PersonaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/controller/PersonaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/model/Habitacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/model/Habitacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ClienteRepository.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/HabitacionRepository.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/util/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/ejemplo/alojamiento/util/JwtFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/AuthController.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/User.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserRepository.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/Repository/ClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/Repository/ClienteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/Repository/HabitacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/Repository/HabitacionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/controller/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/controller/ClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/controller/HabitacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/controller/HabitacionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/controller/PersonaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/controller/PersonaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/model/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/model/Habitacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/util/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ejemplo/alojamiento/util/JwtFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
